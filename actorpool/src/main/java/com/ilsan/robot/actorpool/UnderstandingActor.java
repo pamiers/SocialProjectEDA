@@ -35,8 +35,8 @@ public class UnderstandingActor extends UntypedActor {
 //            textJuice();    // 추출
             // TODO: 의도파악
 
-            situAwareActor.tell(msg, getSender());
-            relDefineActor.tell(msg, getSender());
+//            situAwareActor.tell(msg, getSender());
+//            relDefineActor.tell(msg, getSender());
         }
     }
 

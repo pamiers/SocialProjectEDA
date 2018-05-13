@@ -5,7 +5,7 @@ public class MessageImpl implements Message{
     private int status;
 
     public String getMessage() {
-        return "인텔리제이 최고에요. 이클립스 구려요.";
+        return "인텔리제이는 나빠요 이클립스도 나빠요";
     }
 
     public int getStatus() {

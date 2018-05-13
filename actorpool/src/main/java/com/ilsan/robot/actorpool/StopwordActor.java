@@ -7,16 +7,19 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
 public class StopwordActor extends UntypedActor {
 
     private LoggingAdapter log = Logging.getLogger(getContext().system(), this);
-    private Set<String> stopWords;
+    private List<String> stopWords;
     private String path;
 
     private ActorRef textAnalysisActor;
@@ -27,18 +30,14 @@ public class StopwordActor extends UntypedActor {
     }
 
     public void init() {
-        this.path = path;
-        stopWords = new HashSet<>();
+        this.path = "/Users/hosik/IdeaProjects/SocialProjectEDA/actorpool/src/main/resources/StopWord/kor-stopword.txt";
+        stopWords = new ArrayList<>();
         File f = new File(path);
         File[] fList = f.listFiles();
 
         try {
-            for (File file : fList) {
-                Stream<String> lines = Files.lines(Paths.get(file.getAbsolutePath()));
-                lines.forEach(s -> stopWords.add(s.trim()));
-                lines.close();
-            }
-
+            stopWords = Files.readAllLines(Paths.get(path),
+                    StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }

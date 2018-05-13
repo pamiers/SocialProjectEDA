@@ -1,4 +1,12 @@
 package com.ilsan.robot.actorpool;
 
-public class SlowRespActor {
+import akka.actor.UntypedActor;
+
+public class SlowRespActor extends UntypedActor {
+
+
+    @Override
+    public void onReceive(Object message) throws Exception {
+
+    }
 }
