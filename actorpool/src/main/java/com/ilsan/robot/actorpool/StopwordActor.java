@@ -21,7 +21,12 @@ public class StopwordActor extends UntypedActor {
 
     private ActorRef textAnalysisActor;
 
-    public StopwordActor(String path) throws IllegalArgumentException{
+    public StopwordActor() {
+        init();
+        textAnalysisActor = context().actorOf(Props.create(TextAnalysisActor.class), "textAnalysisActor");
+    }
+
+    public void init() {
         this.path = path;
         stopWords = new HashSet<>();
         File f = new File(path);
@@ -38,7 +43,6 @@ public class StopwordActor extends UntypedActor {
             throw new IllegalArgumentException();
         }
 
-        textAnalysisActor = context().actorOf(Props.create(TextAnalysisActor.class), "textAnalysisActor");
 
     }
 
